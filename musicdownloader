@@ -1,0 +1,17 @@
+local url = "https://github.com/gearbender/playergraber/raw/refs/heads/main/Movie.dfpwm"
+local response = http.get(url)
+
+if not response then
+    error("Download failed")
+end
+
+local file = fs.open("sound.dfpwm", "wb")
+
+while true do
+    local chunk = response.read(512) -- small chunks
+    if not chunk then break end
+    file.write(chunk)
+end
+
+file.close()
+response.close()
