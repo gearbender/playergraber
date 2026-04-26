@@ -1,0 +1,28 @@
+local dfpwm = require("cc.audio.dfpwm")
+local speaker = peripheral.find("speaker")
+
+if not speaker then
+    error("No speaker found")
+end
+
+local url = "https://github.com/gearbender/playergraber/raw/refs/heads/main/Movie.dfpwm"
+local response = http.get(url)
+
+if not response then
+    error("Failed to fetch audio")
+end
+
+local decoder = dfpwm.make_decoder()
+
+while true do
+    local chunk = response.read(16 * 1024)
+    if not chunk then break end
+
+    local buffer = decoder(chunk)
+
+    while not speaker.playAudio(buffer) do
+        os.pullEvent("speaker_audio_empty")
+    end
+end
+
+response.close()
