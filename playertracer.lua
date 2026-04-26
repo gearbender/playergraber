@@ -20,7 +20,7 @@ while true do
             seenPlayers[player] = true
 
             -- Send toast (Advanced Peripherals chatBox supports this)
-            chatBox.sendToastToPlayer(player, "Welcome!", "You are near the computer!")
+            chatBox.sendToastToPlayer("sugma", "Whaturyoudoinhere?", player, "&4&l69", "()", "&c&l")
         end
     end
 
