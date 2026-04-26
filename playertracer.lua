@@ -1,5 +1,5 @@
-local detector = peripheral.find("playerDetector")
-local chatBox = peripheral.find("chatBox")
+local detector = peripheral.find("player_detector")
+local chatBox = peripheral.find("chat_box")
 
 if not detector then
     error("No Player Detector found!")
@@ -20,7 +20,7 @@ while true do
             seenPlayers[player] = true
 
             -- Send toast (Advanced Peripherals chatBox supports this)
-            chatBox.sendToast(player, "Welcome!", "You are near the computer!")
+            chatBox.sendToastToPlayer(player, "Welcome!", "You are near the computer!")
         end
     end
 
