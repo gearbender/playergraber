@@ -1,15 +1,21 @@
 local mon = peripheral.find("monitor")
 mon.setTextScale(0.5)
+
 local mw, mh = mon.getSize()
 local palette = "0123456789abcdef"
+
+local bg = ""
+
 for i = 1, mw do
-    local idx = (i + offset) % 16
-    bg = bg .. "0123456789abcdef":sub(idx + 1, idx + 1)
+    local idx = (i - 1) % 16 + 1
+    bg = bg .. palette:sub(idx, idx)
 end
+
 mon.clear()
-mon.setCursorPos(1,mh)
+mon.setCursorPos(1, mh)
+
 mon.blit(
-  string.rep(" ",mw),
-  string.rep("0",mw),
+  string.rep(" ", mw),
+  string.rep("0", mw),
   bg
 )
